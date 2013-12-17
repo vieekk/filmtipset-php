@@ -3,6 +3,7 @@
 class Filmtipset {
 	private $_url = 'http://www.filmtipset.se/api/api.cgi';
 	private $_data;
+	private $_result;
 	
 	public function __construct($access_key, $user_key) {
 		$url_data = array(
@@ -18,6 +19,10 @@ class Filmtipset {
 		return $this->_data;
 	}
 	
+	public function get_result() {
+		return $this->_result;
+	}
+	
 	public function get_url($url_data, $first = false) {
 		$url = $this->_url;
 		$url .= $first ? '?' : '&';
@@ -30,16 +35,35 @@ class Filmtipset {
 		echo '</pre>';
 	}
 	
+	public function print_result() {
+		echo '<pre>';
+		print_r($this->get_result());
+		echo '</pre>';
+	}
+	
 	public function query($action, $url_data) {
 		$url_data = array_merge(array('action' => $action), $url_data);
 		$url = $this->get_url($url_data);
-		$this->_data = file_get_contents($url);
-		//$this->_data = json_decode($json);
+		$json = file_get_contents($url);
+		$data = json_decode(utf8_decode($json));
+		$this->_data = $data[0]->data[0]->hits;
+		
+		foreach ($data as $val) {
+			if (isset($val->movie))
+				$this->_result[] = new Movie($val->movie);
+		}
 	}
 	
 	public function search($keywords) {
 		$query_data = array('id' => $keywords);
 		$this->query('search', $query_data);
 		return $this;
+	}
+}
+
+class Movie extends stdClass {
+	public function __construct(stdClass $obj) {
+		parent::__construct();
+		$this->title = $obj->name;
 	}
 }
