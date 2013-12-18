@@ -1,6 +1,6 @@
 <?php
 
-require 'AbstractItem.php';
+require 'AbstractData.php';
 require 'Movie.php';
 
 class Filmtipset {
