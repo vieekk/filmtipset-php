@@ -1,8 +1,5 @@
 <?php
 
-require 'AbstractData.php';
-require 'Movie.php';
-
 class Filmtipset {
 	private $_data;
 	private $_rawData;
