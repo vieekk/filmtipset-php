@@ -1,5 +1,7 @@
 <?php
 
+namespace Vikekh\\Filmtipset\\AbstractData;
+
 abstract class AbstractData {
 	private $_data;
 	
