@@ -1,6 +1,6 @@
 <?php
 
-namespace Vikekh\\Filmtipset\\AbstractData;
+namespace Vikekh\Filmtipset;
 
 abstract class AbstractData {
 	private $_data;
@@ -21,7 +21,12 @@ abstract class AbstractData {
 	}
 	
 	public static function explode($value) {
-		return explode('|', str_replace(array(', ', ','), '|', $value));
+		$array = explode('|', str_replace(array(', ', ','), '|', $value));
+		
+		foreach ($array as $key => $value)
+			$array[$key] = trim($value);
+		
+		return $array;
 	}
 	
 	public function __get($name) {

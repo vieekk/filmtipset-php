@@ -1,9 +1,12 @@
 <?php
 
-using Vikekh\Filmtipset\AbstractData;
+use Vikekh\Filmtipset\AbstractData;
 
 class AbstractDataTest extends PHPUnit_Framework_TestCase {
 	public function testFoo() {
-		$this->assertEquals(array('foo', 'bar'), AbstractData::explode('foo,bar'));
+		$expected = array('foo', 'bar');
+		$this->assertSame($expected, AbstractData::explode('foo,bar'));
+		$this->assertSame($expected, AbstractData::explode('foo, bar'));
+		$this->assertSame($expected, AbstractData::explode('foo , bar'));
 	}
 }
