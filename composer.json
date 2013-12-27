@@ -1,13 +1,13 @@
 {
-	"name": "vieekk/filmtipset-php",
+	"name": "vikekh/filmtipset-php",
 	"repositories": [
 		{
 			"type": "vcs",
-			"url": "https://github.com/vieekk/filmtipset-php"
+			"url": "https://github.com/vikekh/filmtipset-php"
 		}
 	],
 	"autoload": {
-		"psr-0": { "vieekk\\": "src/Filmtipset/" }
+		"psr-0": { "Filmtipset\\": "src/" }
 	},
 	"require": {
 		"phpunit/phpunit": "3.7.*"
