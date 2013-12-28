@@ -5,13 +5,13 @@ namespace Vikekh\Filmtipset;
 abstract class AbstractData {
 	private $_data;
 	
-	public function __construct(stdClass $object) {
+	public function __construct(\stdClass $object) {
 		$this->parse($object);
 		$this->removeEmpties();
 		ksort($this->_data);
 	}
 	
-	public static function addProperties(stdClass $object, array $properties) {
+	public static function addProperties(\stdClass $object, array $properties) {
 		foreach ($properties as $property) {
 			if (!isset($object->{$property}))
 				$object->{$property} = null;
@@ -36,7 +36,7 @@ abstract class AbstractData {
 			return null;
 	}
 
-	abstract protected function parse(stdClass $object);
+	abstract protected function parse(\stdClass $object);
 	
 	private function removeEmpties() {
 		foreach ($this->_data as $key => $value) {

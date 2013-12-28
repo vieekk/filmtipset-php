@@ -1,7 +1,11 @@
 <?php
 
+namespace Vikekh\Filmtipset;
+
+use Vikekh\Filmtipset\AbstractData;
+
 class Movie extends AbstractData {
-	protected function parse(stdClass $movie) {
+	protected function parse(\stdClass $movie) {
 		$properties = array('alt_title', 'country', 'id', 'image', 'imdb',
 			'length', 'name', 'orgname', 'url', 'year');
 		$movie = self::addProperties($movie, $properties);
